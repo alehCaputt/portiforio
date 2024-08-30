@@ -11,39 +11,30 @@
     align-items: center;
     }
 
-    h1 {
+    
+      
+      #artext {
+        background: linear-gradient(
+          to left,
+          rgb(74, 138, 247), rgb(25, 63, 229),
+          rgb(13, 38, 229),  rgb(16, 62, 141),
+          rgb(1, 47, 153)
+        );
+        background-clip: text;
+        -webkit-background-clip: text; /* Compatibilidade com navegadores baseados em WebKit */
+        display: inline;
+        color: transparent;
+        animation: animated 11s linear infinite;
         position: absolute;
         top: 0;
         width: 100%;
         text-align: center;
         margin: 0;
         padding: 1em 0;
-        font-family: "Nunito", cursive;
+        
       }
-      
-      #artext {
-        background: linear-gradient(
-          to left,
-          rgb(202, 202, 202),
-          rgb(190, 190, 190),
-          rgb(96, 91, 91),
-          rgb(74, 74, 74),
-          rgb(82, 81, 81)
-        );
-        background-size: 200%; /* Faz o background se repetir para criar o efeito */
-        background-clip: text;
-        -webkit-background-clip: text; /* Compatibilidade com navegadores baseados em WebKit */
-        color: transparent;
-        animation: animated 5s linear infinite;
-      }
-      
       @keyframes animated {
-        0% {
-          background-position: 0% 50%;
-        }
-        100% {
-          background-position: 100% 50%;
-        }
+       to {background-position-x:161px;}
       }
       
 
