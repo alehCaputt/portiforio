@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --bg-color: #1d2631;
+    --text-color: #fff;
+    --main-color: #34e7f8;
+    --other-color: #fcfcfc;
+    --h1-font: 4rem;
+    --p-font: 1rem;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 8%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo i {
+    color: var(--main-color);
+    font-size: 32px;
+    margin-right: 5px;
+}
+
+.navegação {
+    display: flex;
+}
+
+.navegação a {
+    color: var(--other-color);
+    font-size: var(--p-font);
+    font-weight: 500;
+    margin: 0 30px;
+    transition: color .55s ease;
+}
+
+.navegação a:hover {
+    color: var(--main-color);
+}
+
+.section {
+    padding: 100px 15% 50px; /* Ajuste para o espaçamento */
+}
+
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.review-card {
+    background: #2b394b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform .3s;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+}
+
+.review-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.review-card p {
+    color: #ffffff99;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.review-card .rating {
+    color: var(--main-color);
+    font-size: 1.2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 70px;
+    font-size: 16px;
+    font-weight: 500;
+    background: transparent;
+    border: solid 2px var(--text-color);
+    transition: all 0.55s ease;
+    color: var(--text-color);
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: var(--text-color);
+    border: 2px solid var(--text-color);
+    color: #000;
+}
