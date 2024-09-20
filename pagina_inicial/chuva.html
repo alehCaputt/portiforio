@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <style>
+            html {
+                height: 100%;
+            }
+            body {
+                background: #0d343a;
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0d343a), to(#000000));
+                overflow: hidden;
+                margin: 0;
+            }
+            .drop {
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0d343a), to(#ffffff99));
+                width: 2px;
+                height: 90px;
+                position: absolute;
+                bottom: 200px;
+                opacity: 0.6;
+                border-radius: 50%;
+                animation: fall linear infinite;
+            }
+            @keyframes fall {
+                to {
+                    transform: translateY(1000px); 
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section class="fundo rain"></section>
+        <script>
+            let rainTypes = {
+                normal: {drops: 500, minDuration: 3, maxDuration: 6, opacity: 0.6},
+                storm: {drops: 1000, minDuration: 1, maxDuration: 3, opacity: 0.9},
+                drizzleLight: {drops: 200, minDuration: 4, maxDuration: 8, opacity: 0.3},
+                drizzleHeavy: {drops: 400, minDuration: 3, maxDuration: 6, opacity: 0.5}
+            };
+
+            let currentRainType = 'normal';
+
+            function randRange(minNum, maxNum) {
+                return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+            }
+
+            function createRain(type) {
+                document.querySelector('.rain').innerHTML = ''; // Limpa a chuva anterior
+                let {drops, minDuration, maxDuration, opacity} = rainTypes[type];
+                
+                for (let i = 1; i <= drops; i++) {
+                    let dropLeft = randRange(0, window.innerWidth);
+                    let dropTop = randRange(-1000, 0);
+                    let dropDuration = randRange(minDuration, maxDuration);
+                    let dropHeight = randRange(60, 120);
+
+                    document.querySelector('.rain').insertAdjacentHTML('beforeend', 
+                        `<div class="drop" id="drop${i}" style="left:${dropLeft}px; top:${dropTop}px; height:${dropHeight}px; opacity:${opacity}; animation-duration:${dropDuration}s;"></div>`);
+                }
+            }
+
+            function changeRainType() {
+                let rainSequence = ['normal', 'storm', 'drizzleHeavy', 'drizzleLight'];
+                let currentIndex = rainSequence.indexOf(currentRainType);
+                currentRainType = rainSequence[(currentIndex + 1) % rainSequence.length];
+                createRain(currentRainType);
+            }
+
+            // Cria a chuva inicial
+            createRain(currentRainType);
+
+            // Muda o tipo de chuva a cada 60 segundos
+            setInterval(changeRainType, 60000);
+        </script>
+    </body>
+</html>

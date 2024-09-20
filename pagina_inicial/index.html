@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Programador Sênior</title>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <header>
+        <h1>Portfólio de Projetos</h1>
+        <p>Desenvolvimento Web &amp; Software - Programador Sênior</p>
+    </header>
+    
+    <section class="banner">
+        <section class="fundo rain"></section>
+        
+<canvas id="lightningCanvas"></canvas>
+        <img src="./img/lua-hoje-scaled.jpg" alt="" class="personal-photo">
+        <div class="info-nav">
+            <button class="tablink" onclick="openInfo(event, 'Resumo')">Resumo</button>
+            <button class="tablink" onclick="openInfo(event, 'Qualificações')">Qualificações</button>
+            <button class="tablink" onclick="openInfo(event, 'Interesses')">Interesses</button>
+            <button class="tablink" onclick="openInfo(event, 'Objetivos')">Objetivos</button>
+
+            <div id="Resumo" class="tabcontent">
+                <h2>Resumo</h2>
+                <p>Aqui está um resumo sobre mim...</p>
+            </div>
+
+            <div id="Qualificações" class="tabcontent">
+                <h2>Qualificações</h2>
+                <p>Minhas principais qualificações...</p>
+            </div>
+
+            <div id="Interesses" class="tabcontent">
+                <h2>Interesses</h2>
+                <p>Meus interesses incluem...</p>
+            </div>
+
+            <div id="Objetivos" class="tabcontent">
+                <h2>Objetivos</h2>
+                <p>Meus objetivos futuros...</p>
+            </div>
+        </div>
+    </section>
+    
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Meus Projetos</h1>
+        <div class="project">
+            <img src="projeto1.jpg" alt="Projeto 1">
+            <div class="project-details">
+                <h2>Sistema de Gestão Empresarial</h2>
+                <p>Desenvolvimento de um sistema completo para gestão empresarial, integrando módulos de contabilidade, CRM, e-commerce e relatórios avançados. Utilização de tecnologias como React, Node.js, e PostgreSQL.</p>
+                <a href="pagina.html">Ver Projeto</a>
+            </div>
+        </div>
+        <div class="project">
+            <img src="projeto2.jpg" alt="Projeto 2">
+            <div class="project-details">
+                <h2>Aplicativo de Delivery</h2>
+                <p>Criação de um aplicativo mobile para delivery de alimentos, com suporte a geolocalização, pagamento online e integração com sistemas de PDV. Tecnologias usadas incluem React Native, Firebase, e Stripe API.</p>
+                <a href="#">Ver Projeto</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navbar = document.getElementById('navbar');
+
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('open');
+        });
+
+        function openInfo(evt, infoName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(infoName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+       
+
+        // chuva banner
+
+        
+        let rainTypes = {
+        normal: {drops: 600, minDuration: 2, maxDuration: 6, opacity: 0.6},
+        storm: {drops: 1000, minDuration: 5, maxDuration: 8, opacity: 0.8},
+        drizzleLight: {drops: 100, minDuration: 7, maxDuration: 10, opacity: 0.4},
+        drizzleHeavy: {drops: 150, minDuration: 5, maxDuration: 7, opacity: 0.5}
+    };
+
+    let currentRainType = 'normal';
+    let rainContainer = document.querySelector('.rain');
+    let rainElements = [];
+
+    function randRange(minNum, maxNum) {
+        return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+    }
+
+    function createRain(type) {
+        rainContainer.innerHTML = ''; // Limpa as gotas anteriores
+        let {drops, minDuration, maxDuration, opacity} = rainTypes[type];
+
+        for (let i = 1; i <= drops; i++) {
+            let dropLeft = randRange(0, window.innerWidth);
+            let dropTop = randRange(-500, 0); // Gotas começam mais perto da parte superior
+            let dropDuration = randRange(minDuration, maxDuration);
+            let dropHeight = randRange(60, 100);
+
+            let drop = document.createElement('div');
+            drop.className = 'drop';
+            drop.style.left = `${dropLeft}px`;
+            drop.style.top = `${dropTop}px`;
+            drop.style.height = `${dropHeight}px`;
+            drop.style.opacity = opacity;
+            drop.style.animationDuration = `${dropDuration}s`;
+
+            rainElements.push(drop);
+            rainContainer.appendChild(drop);
+        }
+    }
+
+    function changeRainType() {
+        let rainSequence = ['normal', 'storm', 'drizzleHeavy', 'drizzleLight'];
+        let currentIndex = rainSequence.indexOf(currentRainType);
+        currentRainType = rainSequence[(currentIndex + 1) % rainSequence.length];
+        createRain(currentRainType);
+    }
+
+    // Cria a chuva inicial
+    createRain(currentRainType);
+
+    // Muda o tipo de chuva a cada 60 segundos
+    setInterval(changeRainType, 60000);
+
+
+    </script>
+</body>
+</html>
