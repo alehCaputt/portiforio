@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <title>Cadastro e Login</title>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo"><i class='bx bx-headphone'></i>Soundbox</a>
+    <ul class="navegação">
+        <li><a href="overvie.html">Geral</a></li>
+        <li><a href="techspecs.html">Especificações</a></li>
+        <li><a href="reviews.html">Avaliações</a></li>
+        <li><a href="#">Contato</a></li>
+    </ul>
+    <div class="header-icons">
+        <i class='bx bx-cart'></i>
+        <div id="menu"><i class='bx bx-menu'></i></div>
+    </div>
+</header>
+
+<div class="section">
+    <div id="auth-container">
+        <form id="register-form" class="form">
+            <h2>Cadastro</h2>
+            <label for="register-name">Nome Completo</label>
+            <input type="text" id="register-name" required>
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" required>
+            <label for="register-password">Senha</label>
+            <input type="password" id="register-password" required>
+            <label for="register-cep">CEP</label>
+            <input type="text" id="register-cep" required>
+            <button type="button" onclick="register()">Cadastrar</button>
+        </form>
+
+        
+    </div>
+</div>
+
+<script type="module">
+    // Firebase configuration
+    import { initializeApp } from "firebase/app";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyApTsnV87G-QgNRs0v2qorFz8PpkUf78is",
+        authDomain: "lojaeletro-207d7.firebaseapp.com",
+        projectId: "lojaeletro-207d7",
+        storageBucket: "lojaeletro-207d7.appspot.com",
+        messagingSenderId: "754581217865",
+        appId: "1:754581217865:web:0aaed135d4ab4da2f71598",
+        measurementId: "G-2J8F8GFQ6R"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    // Register function
+    window.register = function() {
+    const name = document.getElementById("register-name").value;
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+    const cep = document.getElementById("register-cep").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert(`Cadastro realizado com sucesso! Bem-vindo, ${name}!`);
+            // Redirect to the login page
+            window.location.href = "login.html"; // Adjust the URL as needed
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
+};
+
+   
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <title>Cadastro e Login</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo"><i class='bx bx-headphone'></i>Soundbox</a>
+        <ul class="navegação">
+            <li><a href="overvie.html">Geral</a></li>
+            <li><a href="techspecs.html">Especificações</a></li>
+            <li><a href="reviews.html">Avaliações</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+        <div class="header-icons">
+            <i class='bx bx-cart'></i>
+            <div id="menu"><i class='bx bx-menu'></i></div>
+        </div>
+    </header>
+
+
+    <form id="login-form" class="form">
+        <h2>Login</h2>
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required>
+        <label for="login-password">Senha</label>
+        <input type="password" id="login-password" required>
+        <button type="button" onclick="login()">Entrar</button>
+    </form>
+    <script type="module">
+        // Firebase configuration
+        import { initializeApp } from "firebase/app";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyApTsnV87G-QgNRs0v2qorFz8PpkUf78is",
+            authDomain: "lojaeletro-207d7.firebaseapp.com",
+            projectId: "lojaeletro-207d7",
+            storageBucket: "lojaeletro-207d7.appspot.com",
+            messagingSenderId: "754581217865",
+            appId: "1:754581217865:web:0aaed135d4ab4da2f71598",
+            measurementId: "G-2J8F8GFQ6R"
+        };
+        window.login = function() {
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                alert("Login realizado com sucesso!");
+                // Redirect or perform further actions
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+    };
+
+</script>
+</body>
+</html>
