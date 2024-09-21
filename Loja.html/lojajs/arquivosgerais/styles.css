@@ -49,12 +49,14 @@
     
 }
 
-body{
-    background-color:#1d2631 ;
+body {
+    background-color: #1d2631;
     color: var(--tex-color);
-    
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    height: 100vh; /* Ocupa toda a altura da viewport */
 }
-
 
 .section {
     display: flex;
@@ -65,15 +67,14 @@ body{
 }
 
 .form {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.3); /* Torna o fundo mais transparente */
     padding: 20px;
     border-radius: 10px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin: 10px; /* Added margin for better spacing */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Aumenta a sombra para dar destaque */
+    margin: 10px; /* Adicionado para espaçamento */
 }
-
 form label {
     margin-top: 10px;
     color: var(--other-color);
